@@ -69,9 +69,21 @@ function handleBtnClearClick(event) {
   event.preventDefault();
   clearForm();
 }
-async function handleBtnSaveClick(event) {
+function handleBtnSaveClick(event) {
   event.preventDefault();
-  listController.addCard(state.address);
+
+  const errors = addressService.getErrors(state.address);
+  const keys = Object.keys(errors);
+
+  if (keys.length > 0) {
+    keys.forEach((key) => {
+      setFormError(key, errors[key]);
+    });
+    //for(let i = 0; i < keys.length; i++){setFormError(keys[i], errors[key[i]]);}
+  } else {
+    listController.addCard(state.address);
+    clearForm();
+  }
 }
 function clearForm() {
   state.inputCep.value = "";
@@ -80,6 +92,8 @@ function clearForm() {
   state.inputStreet.value = "";
   setFormError("cep", "");
   setFormError("number", "");
+
+  state.address = new Address();
   state.inputCep.focus();
 }
 function setFormError(key, value) {
