@@ -26,7 +26,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .modal-content {
@@ -35,13 +34,8 @@
     margin-top: 10px;
 }
 
-.modal-link {
-    display: flex;
-    align-items: center;
-}
-
-.modal-link a {
-    color: #fff;
-    padding-left: 3px;
-    text-decoration: none;
+.modal-content img:hover {
+    width: 70px;
+    background-color: #fff;
+    border-radius: 6px;
 }
